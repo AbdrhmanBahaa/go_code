@@ -43,7 +43,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 .logo {
-    color: #fff;
+    color: rgb(255, 0, 0);
     font-size: 32px;
     font-weight: 900;
     letter-spacing: 2px;
@@ -205,45 +205,6 @@ _ .hidden-login {
 }
 
 /* -------- END NAVBAR -------- */
-
-
-/* -------- START FIRST SECTION -------- */
-.first-sec img {
-    min-height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(#00b4d8, #02045e), url(./images/modern.jpg);
-    background-position: center;
-    background-size: cover;
-
-}
-
-.text-box {
-    width: 100%;
-    color: white;
-    position: absolute;
-    margin: 30px;
-    top: 30%;
-    /* right:  70%; */
-    /* transform: translate(-50%, -50%); */
-    text-align: start;
-    max-inline-size: 740px;
-
-}
-
-.text-box h2 {
-    padding: 20px;
-    text-transform: uppercase;
-    font-size: 40px;
-}
-
-.text-box p {
-    /* box-sizing: border-box; */
-    padding: 0px 20px;
-    letter-spacing: 2px;
-    line-height: 25px;
-}
-
-/* -------- END FIRST SECTION -------- */
 
 
 /* START ROADMAP PAGE */
