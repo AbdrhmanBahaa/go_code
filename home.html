@@ -1,272 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/x-icon" href="/images/Icons/favicon.ico">
-  <title>Go Code</title>
-  <link rel="stylesheet" href="style/normalize.css" />
-  <link rel="stylesheet" href="newcss.css" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="font-awesome-5.15.3/fontawesome-free-5.15.3-web/css/all.min.css" />
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&#038;display=swap" rel="stylesheet" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/images/Icons/favicon.ico" />
+    <title>Go Code</title>
+    <link rel="stylesheet" href="style/normalize.css" />
+    <link rel="stylesheet" href="newcss.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link
+      rel="stylesheet"
+      href="font-awesome-5.15.3/fontawesome-free-5.15.3-web/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&#038;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<body>
-  <!-- Navbar -->
+    html,
+    body {
+      height: 100%;
+    }
 
-  <!-- Start Header -->
-  <div class="header" id="header">
-    <div class="container">
-      <h1 class="logo" onclick="window.location.href='home.html';">
-        G
-        <div class="gear">
-          <i class="fa fa-gear"></i>
-        </div>
-        <pre> </pre>
-        C
-        <div class="gear">
-          <i class="fa fa-gear"></i>
-        </div>
-        de
-      </h1>
-      <ul class="main-nav">
-        <li><a href="#tracks">Home</a></li>
-        <li><a href="#courses">Courses</a></li>
-        <li><a href="#features">Features</a></li>
-        <li>
-          <a href="#">Other Links</a>
-          <!-- Start Megamenu -->
-          <div class="mega-menu">
-            <div class="image">
-              <img src="images/megamenu.png" alt="" />
+    body {
+      font-family: "Montserrat", serif;
+    }
+
+    main {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+      background: url("../assets/background_image.jpg");
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .game-quiz-container {
+      width: 40rem;
+      height: 30rem;
+      background-color: lightgray;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 30px;
+    }
+
+    .game-details-container {
+      width: 80%;
+      height: 4rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .game-details-container h1 {
+      font-size: 1.2rem;
+    }
+
+    .game-question-container {
+      width: 80%;
+      height: 8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid darkgray;
+      border-radius: 25px;
+    }
+
+    .game-question-container h1 {
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 3px;
+    }
+
+    .game-options-container {
+      width: 80%;
+      height: 12rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .game-options-container span {
+      width: 45%;
+      height: 3rem;
+      border: 2px solid darkgray;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    span label {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+      font-weight: 600;
+      color: rgb(22, 22, 22);
+    }
+
+    span label:hover {
+      -ms-transform: scale(1.12);
+      -webkit-transform: scale(1.12);
+      transform: scale(1.12);
+      color: white;
+    }
+
+    input[type="radio"] {
+      position: relative;
+      display: none;
+    }
+
+    input[type="radio"]:checked ~ .option {
+      background: paleturquoise;
+    }
+
+    .next-button-container {
+      width: 50%;
+      height: 3rem;
+      display: flex;
+      justify-content: center;
+    }
+    .next-button-container button {
+      width: 8rem;
+      height: 2rem;
+      border-radius: 10px;
+      background: none;
+      color: rgb(25, 25, 25);
+      font-weight: 600;
+      border: 2px solid gray;
+      cursor: pointer;
+      outline: none;
+    }
+    .next-button-container button:hover {
+      background-color: rgb(143, 93, 93);
+    }
+
+    .modal-container {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      -webkit-animation: fadeIn 1.2s ease-in-out;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .modal-content-container {
+      height: 20rem;
+      width: 25rem;
+      background-color: rgb(43, 42, 42);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 25px;
+    }
+
+    .modal-content-container h1 {
+      font-size: 1.3rem;
+      height: 3rem;
+      color: lightgray;
+      text-align: center;
+    }
+
+    .grade-details {
+      width: 15rem;
+      height: 10rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .grade-details p {
+      color: white;
+      text-align: center;
+    }
+
+    .modal-button-container {
+      height: 2rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-button-container button {
+      width: 10rem;
+      height: 2rem;
+      background: none;
+      outline: none;
+      border: 1px solid rgb(252, 242, 241);
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+    .modal-button-container button:hover {
+      background-color: rgb(83, 82, 82);
+    }
+
+    @media (min-width: 300px) and (max-width: 350px) {
+      .game-quiz-container {
+        width: 90%;
+        height: 80vh;
+      }
+      .game-details-container h1 {
+        font-size: 0.8rem;
+      }
+
+      .game-question-container {
+        height: 6rem;
+      }
+      .game-question-container h1 {
+        font-size: 0.9rem;
+      }
+
+      .game-options-container span {
+        width: 90%;
+        height: 2.5rem;
+      }
+      .game-options-container span label {
+        font-size: 0.8rem;
+      }
+      .modal-content-container {
+        width: 90%;
+        height: 25rem;
+      }
+
+      .modal-content-container h1 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (min-width: 350px) and (max-width: 700px) {
+      .game-quiz-container {
+        width: 90%;
+        height: 80vh;
+      }
+      .game-details-container h1 {
+        font-size: 1rem;
+      }
+
+      .game-question-container {
+        height: 8rem;
+      }
+
+      .game-question-container h1 {
+        font-size: 0.9rem;
+      }
+
+      .game-options-container span {
+        width: 90%;
+      }
+      .modal-content-container {
+        width: 90%;
+        height: 25rem;
+      }
+      .modal-content-container h1 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <body>
+    <!-- Navbar -->
+
+    <!-- Start Header -->
+    <div class="header" id="header">
+      <div class="container">
+        <h1 class="logo" onclick="window.location.href='home.html';">
+          G
+          <div class="gear">
+            <i class="fa fa-gear"></i>
+          </div>
+          <pre></pre>
+          C
+          <div class="gear">
+            <i class="fa fa-gear"></i>
+          </div>
+          de
+        </h1>
+        <ul class="main-nav">
+          <li><a href="#tracks">Home</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#features">Features</a></li>
+          <li>
+            <a href="#">Other Links</a>
+            <!-- Start Megamenu -->
+            <div class="mega-menu">
+              <div class="image">
+                <img src="images/megamenu.png" alt="" />
+              </div>
+              <ul class="links">
+                <li>
+                  <a href="#work-steps"
+                    ><i class="far fa-clipboard fa-fw"></i> How It Works</a
+                  >
+                </li>
+                <li>
+                  <a href="Team_Screen/team_members.html"
+                    ><i class="far fa-user fa-fw"></i> Team Members</a
+                  >
+                </li>
+                <li>
+                  <a href="#services"
+                    ><i class="far fa-building fa-fw"></i> Services</a
+                  >
+                </li>
+                <li>
+                  <a href="quizzes.html" target="_blank"
+                    ><i class="far fa-play-circle fa-fw"></i> Quizzes</a
+                  >
+                </li>
+                <li>
+                  <a href="#stats"
+                    ><i class="far fa-chart-bar fa-fw"></i> Stats</a
+                  >
+                </li>
+              </ul>
             </div>
-            <ul class="links">
-              <li>
-                <a href="#work-steps"><i class="far fa-clipboard fa-fw"></i> How It Works</a>
-              </li>
-              <li>
-                <a href="Team_Screen/team_members.html"><i class="far fa-user fa-fw"></i> Team Members</a>
-              </li>
-              <li>
-                <a href="#services"><i class="far fa-building fa-fw"></i> Services</a>
-              </li>
-              <li>
-                <a href="#video"><i class="far fa-play-circle fa-fw"></i> Top Videos</a>
-              </li>
-              <li>
-                <a href="#stats"><i class="far fa-chart-bar fa-fw"></i> Stats</a>
-              </li>
-            </ul>
+            <!-- End Megamenu -->
+          </li>
+          <li>
+            <a href="Login_Screen/login.html" target="_blank"
+              ><i class="far fa-user-circle"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- End Header -->
+
+    <!-- Start Landing -->
+    <div class="landing">
+      <div class="container">
+        <div class="text">
+          <h1>Welcome, To Go Code</h1>
+          <p>
+            Here we're Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Eos, rerum perferendis commodi vitae doloremque explicabo tempore
+            consectetur laudantium in quos!
+          </p>
+        </div>
+        <div class="image">
+          <img src="images/pair_programming.svg" alt="" />
+        </div>
+      </div>
+      <a href="#tracks" class="go-down">
+        <i class="fas fa-angle-double-down fa-2x"></i>
+      </a>
+    </div>
+    <!-- End Landing -->
+
+    <!-- Start Work Steps -->
+    <div class="work-steps" id="work-steps">
+      <h2 class="main-title">How It Works ?</h2>
+      <div class="container">
+        <img src="imgs/work-steps.png" alt="" class="image" />
+        <div class="info">
+          <div class="box">
+            <img src="imgs/work-steps-1.png" alt="" />
+            <div class="text">
+              <h3>New to programming?</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim
+                nesciunt obcaecati quisquam quis laborum recusandae debitis vel
+              </p>
+            </div>
           </div>
-          <!-- End Megamenu -->
-        </li>
-        <li><a href="Login_Screen/login.html" target="_blank"><i class="far fa-user-circle"></i></a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- End Header -->
-
-  <!-- Start Landing -->
-  <div class="landing">
-    <div class="container">
-      <div class="text">
-        <h1>Welcome, To Go Code</h1>
-        <p>Here we're Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos, rerum perferendis commodi vitae
-          doloremque explicabo tempore consectetur laudantium in quos!</p>
+          <div class="box">
+            <img src="imgs/work-steps-2.png" alt="" />
+            <div class="text">
+              <h3>View Road maps</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim
+                nesciunt obcaecati quisquam quis laborum recusandae debitis vel
+              </p>
+            </div>
+          </div>
+          <div class="box">
+            <img src="imgs/work-steps-3.png" alt="" />
+            <div class="text">
+              <h3>Test yourself</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim
+                nesciunt obcaecati quisquam quis laborum recusandae debitis vel
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="image">
-        <img src="images/pair_programming.svg" alt="" />
-      </div>
     </div>
-    <a href="#tracks" class="go-down">
-      <i class="fas fa-angle-double-down fa-2x"></i>
-    </a>
-  </div>
-  <!-- End Landing -->
+    <!-- End Work Steps -->
 
-  <!-- Start Work Steps -->
-  <div class="work-steps" id="work-steps">
-    <h2 class="main-title">How It Works ?</h2>
-    <div class="container">
-      <img src="imgs/work-steps.png" alt="" class="image" />
-      <div class="info">
+    <!-- Start Tracks -->
+    <div class="tracks" id="tracks">
+      <h2 class="main-title">Tracks</h2>
+      <div class="container">
         <div class="box">
-          <img src="imgs/work-steps-1.png" alt="" />
-          <div class="text">
-            <h3>New to programming?</h3>
+          <img src="imgs/cat-01.jpg" alt="" />
+          <div class="content">
+            <h3>Test Title</h3>
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim nesciunt obcaecati quisquam quis laborum
-              recusandae debitis vel
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Reprehenderit
             </p>
           </div>
-        </div>
-        <div class="box">
-          <img src="imgs/work-steps-2.png" alt="" />
-          <div class="text">
-            <h3>View Road maps</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim nesciunt obcaecati quisquam quis laborum
-              recusandae debitis vel
-            </p>
+          <div class="info">
+            <a href="">Read More</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
           </div>
         </div>
         <div class="box">
-          <img src="imgs/work-steps-3.png" alt="" />
-          <div class="text">
-            <h3>Test yourself</h3>
+          <img src="imgs/cat-02.jpg" alt="" />
+          <div class="content">
+            <h3>Test Title</h3>
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim nesciunt obcaecati quisquam quis laborum
-              recusandae debitis vel
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Reprehenderit
             </p>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Work Steps -->
-
-  <!-- Start Tracks -->
-  <div class="tracks" id="tracks">
-    <h2 class="main-title">Tracks</h2>
-    <div class="container">
-      <div class="box">
-        <img src="imgs/cat-01.jpg" alt="" />
-        <div class="content">
-          <h3>Test Title</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
-        </div>
-        <div class="info">
-          <a href="">Read More</a>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </div>
-      </div>
-      <div class="box">
-        <img src="imgs/cat-02.jpg" alt="" />
-        <div class="content">
-          <h3>Test Title</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
-        </div>
-        <div class="info">
-          <a href="">Read More</a>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </div>
-      </div>
-      <div class="box">
-        <img src="imgs/cat-03.jpg" alt="" />
-        <div class="content">
-          <h3>Test Title</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
-        </div>
-        <div class="info">
-          <a href="">Read More</a>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </div>
-      </div>
-      <div class="box">
-        <img src="imgs/cat-04.jpg" alt="" />
-        <div class="content">
-          <h3>Test Title</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
-        </div>
-        <div class="info">
-          <a href="">Read More</a>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </div>
-      </div>
-      <div class="box">
-        <img src="imgs/cat-05.jpg" alt="" />
-        <div class="content">
-          <h3>Test Title</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
-        </div>
-        <div class="info">
-          <a href="">Read More</a>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </div>
-      </div>
-      <div class="box">
-        <img src="imgs/cat-06.jpg" alt="" />
-        <div class="content">
-          <h3>Test Title</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
-        </div>
-        <div class="info">
-          <a href="">Read More</a>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </div>
-      </div>
-      <div class="box">
-        <img src="imgs/cat-07.jpg" alt="" />
-        <div class="content">
-          <h3>Test Title</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
-        </div>
-        <div class="info">
-          <a href="">Read More</a>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </div>
-      </div>
-      <div class="box">
-        <img src="imgs/cat-08.jpg" alt="" />
-        <div class="content">
-          <h3>Test Title</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit</p>
-        </div>
-        <div class="info">
-          <a href="">Read More</a>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="spikes"></div>
-  <!-- End Tracks -->
-
-  <!-- Start Courses -->
-  <div class="courses" id="courses">
-    <h2 class="main-title">Courses</h2>
-    <div class="container">
-      <div class="box">
-        <div class="image">
-          <img src="images/web-design.jpg" alt="" />
-          <div class="layer">
-            <h3>Front-End</h3>
+          <div class="info">
+            <a href="">Read More</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
           </div>
         </div>
-      </div>
-      <div class="box">
-        <div class="image">
-          <img src="images/Front-End.jpg" alt="" />
-          <div class="layer">
-            <h3>Back-End</h3>
+        <div class="box">
+          <img src="imgs/cat-03.jpg" alt="" />
+          <div class="content">
+            <h3>Test Title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Reprehenderit
+            </p>
+          </div>
+          <div class="info">
+            <a href="">Read More</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
           </div>
         </div>
-      </div>
-      <div class="box">
-        <div class="image">
-          <img src="images/mobile-deve.jpg" alt="" />
-          <div class="layer">
-            <h3>Mobile Development</h3>
+        <div class="box">
+          <img src="imgs/cat-04.jpg" alt="" />
+          <div class="content">
+            <h3>Test Title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Reprehenderit
+            </p>
+          </div>
+          <div class="info">
+            <a href="">Read More</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="imgs/cat-05.jpg" alt="" />
+          <div class="content">
+            <h3>Test Title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Reprehenderit
+            </p>
+          </div>
+          <div class="info">
+            <a href="">Read More</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="imgs/cat-06.jpg" alt="" />
+          <div class="content">
+            <h3>Test Title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Reprehenderit
+            </p>
+          </div>
+          <div class="info">
+            <a href="">Read More</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="imgs/cat-07.jpg" alt="" />
+          <div class="content">
+            <h3>Test Title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Reprehenderit
+            </p>
+          </div>
+          <div class="info">
+            <a href="">Read More</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+        </div>
+        <div class="box">
+          <img src="imgs/cat-08.jpg" alt="" />
+          <div class="content">
+            <h3>Test Title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Reprehenderit
+            </p>
+          </div>
+          <div class="info">
+            <a href="">Read More</a>
+            <i class="fas fa-long-arrow-alt-right"></i>
           </div>
         </div>
       </div>
     </div>
-    <div class="learn-more text">
-      <input type="submit" value="Learn More !" class="btn solid">
-    </div>
-  </div>
-  <!-- End Courses -->
+    <div class="spikes"></div>
+    <!-- End Tracks -->
 
-  <!-- test -->
-  <!-- <section class="campus">
+    <!-- Start Courses -->
+    <div class="courses" id="courses">
+      <h2 class="main-title">Courses</h2>
+      <div class="container">
+        <div class="box">
+          <div class="image">
+            <img src="images/web-design.jpg" alt="" />
+            <div class="layer">
+              <h3>Front-End</h3>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="image">
+            <img src="images/Front-End.jpg" alt="" />
+            <div class="layer">
+              <h3>Back-End</h3>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="image">
+            <img src="images/mobile-deve.jpg" alt="" />
+            <div class="layer">
+              <h3>Mobile Development</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="learn-more text">
+        <input type="submit" value="Learn More !" class="btn solid" />
+      </div>
+    </div>
+    <!-- End Courses -->
+
+    <!-- test -->
+    <!-- <section class="campus">
     <div class="row">
       <div class="campus-col box">
         <img src="images/backend.jpg" alt="">
@@ -288,143 +622,162 @@
       </div>
     </div>
   </section> -->
-  <!-- test -->
+    <!-- test -->
 
-  <!-- Start Features -->
-  <div class="features" id="features">
-    <h2 class="main-title">Features</h2>
-    <div class="container">
-      <div class="box quality">
-        <div class="img-holder"><img src="images/features-01.jpg" alt="" /></div>
-        <h2>Beginner</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima</p>
-        <a href="#">More</a>
-      </div>
-      <div class="box time">
-        <div class="img-holder"><img src="images/features-02.jpg" alt="" /></div>
-        <h2>Intermediate</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima</p>
-        <a href="#">More</a>
-      </div>
-      <div class="box passion">
-        <div class="img-holder"><img src="images/features-03.jpg" alt="" /></div>
-        <h2>professional</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima</p>
-        <a href="#">More</a>
-      </div>
-    </div>
-  </div>
-  <!-- End Features -->
-
-  <!-- Start Services -->
-  <div class="services" id="services">
-    <h2 class="main-title">Services</h2>
-    <div class="container">
-      <div class="box">
-        <i class="fas fa-user-shield fa-4x"></i>
-        <h3>Security</h3>
-        <div class="info">
-          <a href="#">Details</a>
+    <!-- Start Features -->
+    <div class="features" id="features">
+      <h2 class="main-title">Features</h2>
+      <div class="container">
+        <div class="box quality">
+          <div class="img-holder">
+            <img src="images/features-01.jpg" alt="" />
+          </div>
+          <h2>Beginner</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum
+            hic veniam eligendi minima
+          </p>
+          <a href="#">More</a>
         </div>
-      </div>
-      <div class="box">
-        <i class="fas fa-tools fa-4x"></i>
-        <h3>Fixing Issues</h3>
-        <div class="info">
-          <a href="#">Details</a>
+        <div class="box time">
+          <div class="img-holder">
+            <img src="images/features-02.jpg" alt="" />
+          </div>
+          <h2>Intermediate</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum
+            hic veniam eligendi minima
+          </p>
+          <a href="#">More</a>
         </div>
-      </div>
-      <div class="box">
-        <i class="fas fa-map-marked-alt fa-4x"></i>
-        <h3>Location</h3>
-        <div class="info">
-          <a href="#">Details</a>
-        </div>
-      </div>
-      <div class="box">
-        <i class="fas fa-laptop-code fa-4x"></i>
-        <h3>Coding</h3>
-        <div class="info">
-          <a href="#">Details</a>
-        </div>
-      </div>
-      <div class="box">
-        <i class="fas fa-palette fa-4x"></i>
-        <h3>Security</h3>
-        <div class="info">
-          <a href="#">Design</a>
-        </div>
-      </div>
-      <div class="box">
-        <i class="fas fa-bullhorn fa-4x"></i>
-        <h3>Marketing</h3>
-        <div class="info">
-          <a href="#">Details</a>
+        <div class="box passion">
+          <div class="img-holder">
+            <img src="images/features-03.jpg" alt="" />
+          </div>
+          <h2>professional</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum
+            hic veniam eligendi minima
+          </p>
+          <a href="#">More</a>
         </div>
       </div>
     </div>
-  </div>
-  <!-- End Services -->
+    <!-- End Features -->
 
-  <!-- Start Stats -->
-  <div class="stats" id="stats">
-    <h2>Our Awesome Stats</h2>
-    <div class="container">
-      <div class="box">
-        <i class="far fa-user fa-2x fa-fw"></i>
-        <span class="number">300</span>
-        <span class="text">Clients</span>
-      </div>
-      <div class="box">
-        <i class="fas fa-code fa-2x fa-fw"></i>
-        <span class="number">400</span>
-        <span class="text">Projects</span>
-      </div>
-      <div class="box">
-        <i class="fas fa-globe-asia fa-2x fa-fw"></i>
-        <span class="number">12</span>
-        <span class="text">Countries</span>
-      </div>
-      <div class="box">
-        <i class="far fa-money-bill-alt fa-2x fa-fw"></i>
-        <span class="number">500K</span>
-        <span class="text">Money</span>
+    <!-- Start Services -->
+    <div class="services" id="services">
+      <h2 class="main-title">Services</h2>
+      <div class="container">
+        <div class="box">
+          <i class="fas fa-user-shield fa-4x"></i>
+          <h3>Security</h3>
+          <div class="info">
+            <a href="#">Details</a>
+          </div>
+        </div>
+        <div class="box">
+          <i class="fas fa-tools fa-4x"></i>
+          <h3>Fixing Issues</h3>
+          <div class="info">
+            <a href="#">Details</a>
+          </div>
+        </div>
+        <div class="box">
+          <i class="fas fa-map-marked-alt fa-4x"></i>
+          <h3>Location</h3>
+          <div class="info">
+            <a href="#">Details</a>
+          </div>
+        </div>
+        <div class="box">
+          <i class="fas fa-laptop-code fa-4x"></i>
+          <h3>Coding</h3>
+          <div class="info">
+            <a href="#">Details</a>
+          </div>
+        </div>
+        <div class="box">
+          <i class="fas fa-palette fa-4x"></i>
+          <h3>Security</h3>
+          <div class="info">
+            <a href="#">Design</a>
+          </div>
+        </div>
+        <div class="box">
+          <i class="fas fa-bullhorn fa-4x"></i>
+          <h3>Marketing</h3>
+          <div class="info">
+            <a href="#">Details</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- End Stats -->
+    <!-- End Services -->
 
-  <div>
-    <span><br><br><br><br><br></span>
-  </div>
+    <!-- Start Stats -->
+    <div class="stats" id="stats">
+      <h2>Our Awesome Stats</h2>
+      <div class="container">
+        <div class="box">
+          <i class="far fa-user fa-2x fa-fw"></i>
+          <span class="number">300</span>
+          <span class="text">Clients</span>
+        </div>
+        <div class="box">
+          <i class="fas fa-code fa-2x fa-fw"></i>
+          <span class="number">400</span>
+          <span class="text">Projects</span>
+        </div>
+        <div class="box">
+          <i class="fas fa-globe-asia fa-2x fa-fw"></i>
+          <span class="number">12</span>
+          <span class="text">Countries</span>
+        </div>
+        <div class="box">
+          <i class="far fa-money-bill-alt fa-2x fa-fw"></i>
+          <span class="number">500K</span>
+          <span class="text">Money</span>
+        </div>
+      </div>
+    </div>
+    <!-- End Stats -->
 
-  <!-- Start Footer -->
-  <footer id="footer">
-    <ul class="waves">
-      <li class="wave" id="wave1"></li>
-      <li class="wave" id="wave2"></li>
-      <li class="wave" id="wave3"></li>
-      <li class="wave" id="wave4"></li>
-    </ul>
-    <ul class=" footer-social-icon">
-      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-      <li><a href="#"><i class="fa fa-github"></i></a></li>
-    </ul>
-    <ul class="footer-menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Support</a></li>
-      <li><a href="Team_Screen/team_members.html">Team</a></li>
+    <div>
+      <span><br /><br /><br /><br /><br /></span>
+    </div>
 
-    </ul>
-    <p>@CopyRight 2022 Go Gode | All Rights Reseved</p>
-  </footer>
-  <!-- End Footer -->
+    <!-- Start Footer -->
+    <footer id="footer">
+      <ul class="waves">
+        <li class="wave" id="wave1"></li>
+        <li class="wave" id="wave2"></li>
+        <li class="wave" id="wave3"></li>
+        <li class="wave" id="wave4"></li>
+      </ul>
+      <ul class="footer-social-icon">
+        <li>
+          <a href="#"><i class="fa fa-facebook"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-instagram"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-github"></i></a>
+        </li>
+      </ul>
+      <ul class="footer-menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="Team_Screen/team_members.html">Team</a></li>
+      </ul>
+      <p>@CopyRight 2022 Go Gode | All Rights Reseved</p>
+    </footer>
+    <!-- End Footer -->
 
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
 
 <!-- GIT Commands
